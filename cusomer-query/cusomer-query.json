@@ -1,0 +1,40 @@
+{
+  "name" : "cusomer-query",
+  "jobMode" : "VISUAL",
+  "description" : "",
+  "role" : "arn:aws:iam::381492247417:role/demo-glue",
+  "executionProperty" : {
+    "maxConcurrentRuns" : 1
+  },
+  "command" : {
+    "name" : "glueetl",
+    "scriptLocation" : "s3://aws-glue-assets-381492247417-us-east-1/scripts/cusomer-query.py",
+    "pythonVersion" : "3"
+  },
+  "defaultArguments" : {
+    "--enable-metrics" : "true",
+    "--enable-spark-ui" : "true",
+    "--spark-event-logs-path" : "s3://aws-glue-assets-381492247417-us-east-1/sparkHistoryLogs/",
+    "--enable-job-insights" : "true",
+    "--enable-observability-metrics" : "true",
+    "--enable-glue-datacatalog" : "true",
+    "--job-bookmark-option" : "job-bookmark-disable",
+    "--job-language" : "python",
+    "--TempDir" : "s3://aws-glue-assets-381492247417-us-east-1/temporary/"
+  },
+  "maxRetries" : 0,
+  "allocatedCapacity" : 10,
+  "timeout" : 480,
+  "maxCapacity" : 10.0,
+  "glueVersion" : "5.0",
+  "numberOfWorkers" : 10,
+  "workerType" : "G.1X",
+  "executionClass" : "STANDARD",
+  "codeGenConfigurationNodes" : "{\"node-1753696109039\":{\"S3CsvSource\":{\"AdditionalOptions\":{\"EnableSamplePath\":false,\"SamplePath\":\"s3://demo-cutomers-glue/customers-100.csv\"},\"Escaper\":\"\",\"Exclusions\":[],\"Name\":\"Amazon S3\",\"OptimizePerformance\":false,\"Paths\":[\"s3://demo-cutomers-glue/customers-100.csv\"],\"QuoteChar\":\"quote\",\"Recurse\":true,\"Separator\":\"comma\",\"WithHeader\":true}},\"node-1753696131221\":{\"SparkSQL\":{\"Inputs\":[\"node-1753696109039\"],\"Name\":\"SQL Query\",\"OutputSchemas\":[{\"Columns\":[{\"Name\":\"Subscription_Year\",\"Type\":\"int\"},{\"Name\":\"Count\",\"Type\":\"bigint\"}]}],\"SqlAliases\":[{\"Alias\":\"customers\",\"From\":\"node-1753696109039\"}],\"SqlQuery\":\"SELECT YEAR(`Subscription Date`) AS Subscription_Year, COUNT(*) AS Count \\r\\nFROM customers \\r\\nGROUP BY Subscription_Year \\r\\nORDER BY Subscription_Year;\"}},\"node-1753696167278\":{\"S3DirectTarget\":{\"AutoDataQuality\":{\"EvaluationContext\":\"EvaluateDataQuality_node1753696079988\",\"IsEnabled\":true},\"Compression\":\"none\",\"Format\":\"csv\",\"Inputs\":[\"node-1753696131221\"],\"Name\":\"Amazon S3\",\"NumberTargetPartitions\":\"0\",\"PartitionKeys\":[],\"Path\":\"s3://demo-cutomers-glue/output/\",\"SchemaChangePolicy\":{\"EnableUpdateCatalog\":false}}}}",
+  "sourceControlDetails" : {
+    "provider" : "GITHUB",
+    "repository" : "AWS_Glue",
+    "branch" : "main",
+    "folder" : "cusomer-query"
+  }
+}
