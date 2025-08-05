@@ -8,7 +8,7 @@ phases:
       - pip install pytest pyspark
   build:
     commands:
-      - pytest tests/test_glue_job.py --junitxml=reports/test-report.xml
+      - pytest test/test_glue_job.py --junitxml=reports/test-report.xml
 artifacts:
   files:
     - reports/test-report.xml
