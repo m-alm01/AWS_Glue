@@ -27,7 +27,7 @@ DEFAULT_DATA_QUALITY_RULESET = """
 """
 
 # Script generated for node Amazon S3
-AmazonS3_node1753696109039 = glueContext.create_dynamic_frame.from_options(format_options={"quoteChar": "\"", "withHeader": True, "separator": ",", "optimizePerformance": False}, connection_type="s3", format="csv", connection_options={"paths": ["s3://demo-cutomers-glue/customers-100.csv"], "recurse": True}, transformation_ctx="AmazonS3_node1753696109039")
+#AmazonS3_node1753696109039 = glueContext.create_dynamic_frame.from_options(format_options={"quoteChar": "\"", "withHeader": True, "separator": ",", "optimizePerformance": False}, connection_type="s3", format="csv", connection_options={"paths": ["s3://demo-cutomers-glue/customers-100.csv"], "recurse": True}, transformation_ctx="AmazonS3_node1753696109039")
 
 # Script generated for node SQL Query
 SqlQuery3472 = '''
