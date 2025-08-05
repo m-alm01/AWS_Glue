@@ -11,7 +11,7 @@ def spark():
 
 def test_subscription_year_count(spark):
     # Load the input CSV as text to handle commas in fields
-    input_rdd = spark.read.text("data/customers-100.csv").rdd.map(lambda row: row.value)
+    input_rdd = spark.read.text("customers-100.csv").rdd.map(lambda row: row.value)
     
     # Get header and filter data
     header = input_rdd.first()
@@ -67,4 +67,5 @@ def test_subscription_year_count(spark):
     
     # Basic data quality check (mimicking the default ruleset: ColumnCount > 0)
     assert transformed_df.count() > 0, "Data quality failed: No rows in output"
+
     assert len(transformed_df.columns) > 0, "Data quality failed: No columns in output"
