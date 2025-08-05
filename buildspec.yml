@@ -1,0 +1,14 @@
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+      python: 3.10
+    commands:
+      - pip install --upgrade pip
+      - pip install pytest pyspark
+  build:
+    commands:
+      - pytest tests/test_glue_job.py --junitxml=reports/test-report.xml
+artifacts:
+  files:
+    - reports/test-report.xml
