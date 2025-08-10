@@ -3,6 +3,9 @@ import os
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import udf
 from pyspark.sql.types import StringType, StructType, StructField
+import sys
+from pathlib import Path
+sys.path.append(str(Path(__file__).parent.parent))
 
 # --------------------------
 # Fixtures (Test Setup)
